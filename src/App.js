@@ -49,10 +49,19 @@ function App() {
             lived inside real history.
           </p>
 
-          <button className="hero__button">Unseal the first archive</button>
+          <button
+  className="hero__button"
+  onClick={() =>
+    document.getElementById("archives")?.scrollIntoView({
+      behavior: "smooth",
+    })
+  }
+>
+  Explore the Archives
+</button>
         </div>
       </section>
-      <section className="collection">
+      <section id="archives" className="collection">
         <div className="collection__header">
           <span>THE COLLECTION</span>
           <h2>
