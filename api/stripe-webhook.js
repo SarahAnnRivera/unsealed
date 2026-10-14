@@ -2,6 +2,8 @@
 
 const Stripe = require("stripe");
 const supabase = require("../lib/supabase");
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -128,6 +130,36 @@ if (plan === "follow" && !enrollment.alreadyEnrolled) {
   if (!response.ok) {
     throw new Error(`Initial letter delivery failed: ${response.status}`);
   }
+}
+
+if (plan === "binge" && !enrollment.alreadyEnrolled) {
+  const { data: letters, error: lettersError } = await supabase
+    .from("letters")
+    .select("entry_number, subject, content")
+    .eq("story_id", storyId)
+    .order("entry_number", { ascending: true });
+
+  if (lettersError) throw lettersError;
+
+  if (!letters || letters.length === 0) {
+    throw new Error(`No letters found for ${storyId}`);
+  }
+
+  const fullStory = letters
+    .map(
+      (letter) =>
+        `${letter.subject}\n\n${letter.content}`
+    )
+    .join("\n\n--------------------\n\n");
+
+  const { error: sendError } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL,
+    to: email,
+    subject: `UNSEALED — Your Complete ${storyId.charAt(0).toUpperCase() + storyId.slice(1)} Story`,
+    text: fullStory,
+  });
+
+  if (sendError) throw sendError;
 }
 
       console.log("UNSEALED purchase enrolled:", {
