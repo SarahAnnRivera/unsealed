@@ -1,37 +1,10 @@
 import "./App.css";
-import React, { useState } from "react";
+
 import { stories } from "./data/stories";
 import StoryCard from "./components/StoryCard";
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [showVioletSignup, setShowVioletSignup] = useState(false);
-  const [violetSent, setVioletSent] = useState(false);
-  const [violetError, setVioletError] = useState("");
-
-  const handleVioletSignup = async () => {
-    if (!email || !email.includes("@")) {
-      setVioletError("Please enter a valid email address.");
-      return;
-    }
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-     body: JSON.stringify({
-  email: email,
-  storyId: "violet",
-}),
-    });
-
-    if (response.ok) {
-      setVioletError("");
-      setVioletSent(true);
-    } else {
-      setVioletError("Something went wrong. Please try again.");
-    }
-  };
+  
 
   return (
     <main className="app">
