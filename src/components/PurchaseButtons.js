@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function PurchaseButtons({ story }) {
   const [email, setEmail] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handleCheckout = async (plan) => {
   if (!email.trim()) {
@@ -39,25 +40,42 @@ function PurchaseButtons({ story }) {
   }
 };
 
-  return (
-    <div className="archive-card__actions">
-      <input
-  type="email"
-  placeholder="Your email address"
-  aria-label="Your email address"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  required
-/>
-      <button onClick={() => handleCheckout("follow")}>
-  Follow · ${story.followPrice}
-</button>
+  
+return (
+  <div className="archive-card__actions">
+    {!selectedPlan ? (
+      <>
+        <button onClick={() => setSelectedPlan("follow")}>
+          Follow · ${story.followPrice}
+        </button>
 
-<button onClick={() => handleCheckout("binge")}>
-  Unseal everything · ${story.bingePrice}
-</button>
-    </div>
-  );
+        <button onClick={() => setSelectedPlan("binge")}>
+          Unseal everything · ${story.bingePrice}
+        </button>
+      </>
+    ) : (
+      <>
+        <input
+          type="email"
+          placeholder="Your email address"
+          aria-label="Your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <button onClick={() => handleCheckout(selectedPlan)}>
+          Continue to checkout
+        </button>
+
+        <button onClick={() => setSelectedPlan(null)}>
+          Back
+        </button>
+      </>
+    )}
+  </div>
+);
+
 }
 
 export default PurchaseButtons;

@@ -14,7 +14,7 @@ function formatInline(text) {
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
-function formatCharles(content) {
+function formatDenise(content) {
   const paragraphs = content
     .replace(/\r\n/g, "\n")
     .trim()
@@ -75,8 +75,8 @@ function formatCharles(content) {
   }).join("");
 }
 
-function charlesTemplate(content) {
-  const letter = formatCharles(content);
+function deniseTemplate(content) {
+  const letter = formatDenise(content);
 
   return `
 <!DOCTYPE html>
@@ -173,4 +173,4 @@ function charlesTemplate(content) {
 </html>`;
 }
 
-module.exports = charlesTemplate;
+module.exports = deniseTemplate;

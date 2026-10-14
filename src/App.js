@@ -19,9 +19,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email: email,
-      }),
+     body: JSON.stringify({
+  email: email,
+  storyId: "violet",
+}),
     });
 
     if (response.ok) {
@@ -75,88 +76,12 @@ function App() {
             its characters left behind.
           </p>
         </div>
-        <div className="archive-card">
-          <div className="archive-card__image">
-            <img src="/violetUNSEALED.png" alt="Violet" />
 
-            <div className="archive-mark archive-mark--violet">
-              <span>Yours,</span>
-              <strong>Violet</strong>
-            </div>
-          </div>
+        
+{stories.map((story) => (
+  <StoryCard key={story.id} story={story} />
+))}
 
-          <div className="archive-card__content">
-            <div className="archive-card__meta">
-              <span>ARCHIVE 001</span>
-              <span>NEWPORT, RHODE ISLAND</span>
-              <span>1895</span>
-            </div>
-
-            <h3>{stories[0].title}</h3>
-
-            <p className="archive-card__excerpt">
-              “Sarah, you will simply die when I tell you who asked me to
-              dance...”
-            </p>
-
-            <p className="archive-card__synopsis">
-              Seventeen-year-old Violet has waited an extra year to enter
-              Newport society. Now one of the season's most desirable men has
-              noticed her, her family's fortunes are beginning to crack, and
-              everyone is watching.
-            </p>
-
-            <div className="archive-card__details">
-              <span>Historical Romance</span>
-              <span>PG</span>
-              <span>16 Letters</span>
-            </div>
-
-            {violetSent ? (
-              <div className="archive-success">
-                <span className="archive-success-label">ARCHIVE UNSEALED</span>
-
-                <p className="archive-discovery">
-                  Discovered in the back of an antique shop, an old French
-                  writing desk held a drawer no one had been able to open.
-                </p>
-
-                <p className="archive-discovery-emphasis">Until you did.</p>
-
-                <p className="archive-discovery">
-                  Inside: sixteen letters, tied together and untouched for more
-                  than a century.
-                </p>
-
-                <span className="archive-on-its-way">
-                  THE FIRST IS ON ITS WAY
-                </span>
-              </div>
-            ) : !showVioletSignup ? (
-              <button onClick={() => setShowVioletSignup(true)}>
-                FOLLOW FREE
-              </button>
-            ) : (
-              <div className="archive-signup">
-                <input
-                  className="archive-email-input"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="YOUR EMAIL ADDRESS"
-                />
-
-                {violetError && <p className="archive-error">{violetError}</p>}
-
-                <button onClick={handleVioletSignup}>UNSEAL LETTER 001</button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {stories.slice(1).map((story) => (
-          <StoryCard key={story.id} story={story} />
-        ))}
       </section>
       <section className="experience">
         <div className="experience__header">

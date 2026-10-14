@@ -1,13 +1,39 @@
 export const stories = [
-  {
-    id: "violet",
-    title: "Violet",
-    genre: "Historical Romance",
-    rating: "PG",
-    letterCount: 16,
-    free: true,
-    status: "available",
-  },
+  
+{
+  id: "violet",
+  archive: "ARCHIVE 001",
+  title: "Violet",
+  location: "NEWPORT, RHODE ISLAND",
+  year: "1895",
+
+  image: "/violetUNSEALED.png",
+  imageAlt: "Violet",
+  markClass: "archive-mark--violet",
+  markTop: "Yours,",
+  markBottom: "Violet",
+
+  excerpt: "“Sarah, you will simply die when I tell you who asked me to dance...”",
+
+  synopsis:
+    "Seventeen-year-old Violet has waited an extra year to enter Newport society. Now one of the season's most desirable men has noticed her, her family's fortunes are beginning to crack, and everyone is watching.",
+
+  genre: "Historical Romance",
+  rating: "PG",
+  entryCount: 15,
+  entryType: "Letters",
+  
+discovery: [
+  "Discovered in the back of an antique shop, an old French writing desk held a drawer no one had been able to open.",
+  "Until you did.",
+  "Inside: sixteen letters, tied together and untouched for more than a century."
+],
+
+
+  free: true,
+  status: "available",
+},
+
   {
   id: "charles",
   archive: "ARCHIVE 002",
@@ -28,8 +54,16 @@ export const stories = [
 
   genre: "War / Psychological Drama",
   rating: "R",
-  entryCount: 20,
+  entryCount: 23,
 entryType: "Letters",
+
+discovery: [
+  "The estate sale down the street had the most perfectly preserved steamer trunk. You simply had to have it.",
+  "But when you opened it, you discovered a false bottom.",
+  "Inside lay bloodstained correspondence, hidden for more than a century.",
+  "Were these letters telling a story of survival—or leading you to a gravestone?"
+],
+
 
   free: false,
   followPrice: 1.99,
@@ -59,8 +93,16 @@ entryType: "Letters",
   genre: "Psychological Suspense",
   rating: "PG-13",
 
-  entryCount: 16,
+  entryCount: 20,
   entryType: "Diary Entries",
+  
+discovery: [
+  "Renovating the lake cabin in Maine was supposed to be the satisfying summer project you'd been waiting for.",
+  "But beneath the loose floorboards in the master bedroom, you found her diary.",
+  "Someone had hidden it there for a reason.",
+  "And the lake has a dark history you might wish you'd never uncovered."
+],
+
 
   free: false,
   followPrice: 1.99,
