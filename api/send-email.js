@@ -91,20 +91,30 @@ async function handleScheduledDelivery(req, res) {
   }
 
   const now = new Date().toISOString();
+  const enrollmentId = req.body?.enrollmentId;
+  const storyId = req.body?.storyId;
 
-  // Find the oldest active Follow enrollment due.
-  const { data: enrollment, error: enrollmentError } =
-    await supabase
-      .from("enrollments")
-      .select(
-        "id, subscriber_id, story_id, next_entry_number, next_send_at"
-      )
-      .eq("status", "active")
-      .eq("access_type", "follow")
-      .lte("next_send_at", now)
-      .order("next_send_at", { ascending: true })
-      .limit(1)
-      .maybeSingle();
+ // Find the purchased enrollment, or the next scheduled delivery.
+let query = supabase
+  .from("enrollments")
+  .select("id, subscriber_id, story_id, next_entry_number, next_send_at")
+  .eq("status", "active")
+  .eq("access_type", "follow")
+  .lte("next_send_at", now);
+
+if (enrollmentId && storyId) {
+  // Immediate delivery: target this exact story enrollment.
+  query = query
+    .eq("id", enrollmentId)
+    .eq("story_id", storyId)
+    .eq("next_entry_number", 1);
+} else {
+  // Scheduled delivery: find the next reader due.
+  query = query.order("next_send_at", { ascending: true });
+}
+
+const { data: enrollment, error: enrollmentError } =
+  await query.limit(1).maybeSingle();
 
   if (enrollmentError) {
     throw enrollmentError;

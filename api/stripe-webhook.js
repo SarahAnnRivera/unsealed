@@ -108,6 +108,28 @@ module.exports = async function handler(req, res) {
         stripeSubscriptionId: session.subscription,
       });
 
+      // Immediately send Letter 1 for this specific purchased story.
+if (plan === "follow" && !enrollment.alreadyEnrolled) {
+  const response = await fetch(
+    `${process.env.APP_URL}/api/send-email`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CRON_SECRET}`,
+      },
+      body: JSON.stringify({
+        enrollmentId: enrollment.enrollmentId,
+        storyId,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Initial letter delivery failed: ${response.status}`);
+  }
+}
+
       console.log("UNSEALED purchase enrolled:", {
         sessionId: session.id,
         storyId,
