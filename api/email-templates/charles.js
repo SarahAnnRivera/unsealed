@@ -97,7 +97,7 @@ return `
               line-height:1.85;
               color:#30362e;
             ">
-              ${letter}
+              ${formatted}
             </td>
           </tr>
 
