@@ -66,7 +66,7 @@ discovery: [
 
 
   free: false,
-  followPrice: 1.99,
+  followPrice: 2.99,
   bingePrice: 9.99,
 
   reverse: true,
@@ -105,7 +105,7 @@ discovery: [
 
 
   free: false,
-  followPrice: 1.99,
+  followPrice: 2.99,
   bingePrice: 9.99,
 
   reverse: false,

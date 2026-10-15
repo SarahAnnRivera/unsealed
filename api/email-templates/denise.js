@@ -78,99 +78,117 @@ function formatDenise(content) {
 function deniseTemplate(content) {
   const letter = formatDenise(content);
 
+
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UNSEALED — Archive 002</title>
+  <title>Denise's Diary</title>
 </head>
 
-<body style="margin:0;padding:0;background-color:#dcdcd3;">
+<body style="margin:0;padding:0;background-color:#e8e4ee;">
 
-<table role="presentation" width="100%"
-  cellpadding="0" cellspacing="0"
-  style="background-color:#dcdcd3;">
-  <tr>
-    <td align="center" style="padding:30px 12px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+    style="background-color:#e8e4ee;">
+    <tr>
+      <td align="center" style="padding:28px 12px;">
 
-      <table role="presentation" width="100%"
-        cellpadding="0" cellspacing="0"
-        style="max-width:600px;background-color:#f6f3e9;
-        border:1px solid #b7b6a7;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+          style="max-width:600px;background-color:#fffdfb;
+                 border:1px solid #c9bfd8;">
 
-        <tr>
-          <td style="padding:38px 30px 18px;text-align:center;">
+          <!-- 1980s floral stationery header -->
+          <tr>
+            <td align="center" style="padding:36px 20px 8px;">
 
-            <div style="
-              font-family:Georgia,serif;
-              font-size:17px;
-              letter-spacing:5px;
-              color:#4d5448;
+              <div style="
+                font-family:Georgia,serif;
+                font-size:29px;
+                line-height:1.5;
+                letter-spacing:7px;
+                color:#8e86ba;
+              ">
+                ✿ ❀ ✿
+              </div>
+
+              <div style="
+                font-family:Georgia,serif;
+                font-size:11px;
+                letter-spacing:3px;
+                color:#7d85ac;
+                margin-top:8px;
+              ">
+                ~ ~ ~
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Soft lavender separator -->
+          <tr>
+            <td style="padding:12px 44px 0;">
+              <div style="
+                border-top:1px solid #d8cce5;
+              "></div>
+            </td>
+          </tr>
+
+          <!-- Diary entry -->
+          <tr>
+            <td style="
+              padding:34px 38px 42px;
+              font-family:Georgia,'Times New Roman',serif;
+              font-size:16px;
+              line-height:1.85;
+              color:#414458;
             ">
-              UNSEALED
-            </div>
+              ${letter}
+            </td>
+          </tr>
 
-            <div style="
-              font-family:Georgia,serif;
-              font-size:10px;
-              letter-spacing:2px;
-              color:#858476;
-              margin-top:12px;
-            ">
-              ARCHIVE 002 · PRIVATE CORRESPONDENCE
-            </div>
+          <!-- UNSEALED archive signature -->
+          <tr>
+            <td align="center" style="padding:0 30px 34px;">
 
-          </td>
-        </tr>
+              <div style="
+                border-top:1px solid #d8cce5;
+                margin-bottom:22px;
+              "></div>
 
-        <tr>
-          <td style="padding:0 30px;">
-            <div style="border-top:1px solid #b7b6a7;"></div>
-          </td>
-        </tr>
+              <div style="
+                font-family:Georgia,serif;
+                font-size:9px;
+                letter-spacing:2px;
+                color:#9993a9;
+              ">
+                FROM THE ARCHIVE OF
+              </div>
 
-        <tr>
-          <td style="
-            padding:35px 30px;
-            font-family:Georgia,'Times New Roman',serif;
-            font-size:15px;
-            line-height:1.8;
-            color:#34382f;
-          ">
-            ${letter}
-          </td>
-        </tr>
+              <div style="
+                font-family:Georgia,serif;
+                font-size:15px;
+                letter-spacing:5px;
+                color:#77718b;
+                margin-top:8px;
+              ">
+                UNSEALED
+              </div>
 
-        <tr>
-          <td style="padding:12px 30px 34px;text-align:center;">
+            </td>
+          </tr>
 
-            <div style="
-              border-top:1px solid #b7b6a7;
-              margin-bottom:20px;
-            "></div>
+        </table>
 
-            <div style="
-              font-family:Georgia,serif;
-              font-size:10px;
-              letter-spacing:2px;
-              color:#858476;
-            ">
-              FROM THE UNSEALED ARCHIVE
-            </div>
-
-          </td>
-        </tr>
-
-      </table>
-
-    </td>
-  </tr>
-</table>
+      </td>
+    </tr>
+  </table>
 
 </body>
-</html>`;
+</html>
+  `;
+;
 }
 
 module.exports = deniseTemplate;

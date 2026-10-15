@@ -73,63 +73,107 @@ function formatLetter(content) {
 function violetTemplate(content) {
   const letter = formatLetter(content);
 
-  return `
+
+return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UNSEALED — Private Correspondence</title>
+  <title>Private Correspondence</title>
 </head>
 
-<body style="margin:0;padding:0;background-color:#eae2d5;">
+<body style="margin:0;padding:0;background-color:#e9e0d1;">
 
-  <table role="presentation" cellpadding="0" cellspacing="0"
-    width="100%" style="background-color:#eae2d5;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+    style="background-color:#e9e0d1;">
     <tr>
-      <td align="center" style="padding:32px 12px;">
+      <td align="center" style="padding:30px 12px;">
 
-        <table role="presentation" cellpadding="0" cellspacing="0"
-          width="100%" style="max-width:600px;background-color:#fbf6eb;
-          border:1px solid #d3c1a3;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+          style="max-width:600px;background-color:#fffcf4;
+                 border:1px solid #cbb998;">
 
+          <!-- Violet's personal stationery seal -->
           <tr>
-            <td style="padding:45px 36px 20px;text-align:center;">
-              <div style="font-family:Georgia,serif;font-size:18px;
-                letter-spacing:6px;color:#713c49;">
-                UNSEALED
+            <td align="center" style="padding:42px 24px 18px;">
+
+              <div style="
+                width:76px;
+                height:76px;
+                line-height:76px;
+                border:2px double #783f50;
+                border-radius:50%;
+                font-family:Georgia,'Times New Roman',serif;
+                font-size:44px;
+                font-style:italic;
+                color:#783f50;
+                text-align:center;
+              ">
+                V
               </div>
 
-              <div style="font-family:Georgia,serif;font-size:11px;
-                letter-spacing:2px;color:#8c7665;margin-top:12px;">
+              <div style="
+                margin-top:18px;
+                font-family:Georgia,serif;
+                font-size:10px;
+                letter-spacing:4px;
+                color:#9a8060;
+              ">
                 PRIVATE CORRESPONDENCE
               </div>
+
             </td>
           </tr>
 
+          <!-- Gold stationery rule -->
           <tr>
-            <td style="padding:0 36px;">
-              <div style="border-top:1px solid #d3c1a3;"></div>
+            <td style="padding:6px 42px 0;">
+              <div style="border-top:1px solid #c9af83;"></div>
             </td>
           </tr>
 
+          <!-- Violet's letter -->
           <tr>
-            <td style="padding:36px;color:#40372f;
+            <td style="
+              padding:40px 38px 46px;
               font-family:Georgia,'Times New Roman',serif;
-              font-size:15px;line-height:1.8;">
+              font-size:17px;
+              line-height:1.9;
+              color:#3c302e;
+            ">
               ${letter}
             </td>
           </tr>
 
+          <!-- Archive signature -->
           <tr>
-            <td style="padding:12px 36px 36px;text-align:center;">
-              <div style="border-top:1px solid #d3c1a3;
-                margin-bottom:20px;"></div>
+            <td align="center" style="padding:0 30px 38px;">
 
-              <div style="font-family:Georgia,serif;font-size:10px;
-                letter-spacing:2px;color:#8c7665;">
-                FROM THE UNSEALED ARCHIVE
+              <div style="
+                border-top:1px solid #c9af83;
+                margin-bottom:24px;
+              "></div>
+
+              <div style="
+                font-family:Georgia,serif;
+                font-size:9px;
+                letter-spacing:2px;
+                color:#a28d79;
+              ">
+                FROM THE ARCHIVE OF
               </div>
+
+              <div style="
+                font-family:Georgia,serif;
+                font-size:15px;
+                letter-spacing:5px;
+                color:#783f50;
+                margin-top:8px;
+              ">
+                UNSEALED
+              </div>
+
             </td>
           </tr>
 
@@ -140,7 +184,9 @@ function violetTemplate(content) {
   </table>
 
 </body>
-</html>`;
+</html>
+`;
+
 }
 
 module.exports = violetTemplate;
