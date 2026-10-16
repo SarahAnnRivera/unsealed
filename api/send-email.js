@@ -65,6 +65,27 @@ async function handleFreeSignup(req, res) {
     plan: "follow",
   });
 
+ if (!enrollment.alreadyEnrolled) {
+  const response = await fetch(
+    `${process.env.APP_URL}/api/send-email`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CRON_SECRET}`,
+      },
+      body: JSON.stringify({
+        enrollmentId: enrollment.enrollmentId,
+        storyId,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Initial Violet letter delivery failed: ${response.status}`);
+  }
+} 
+
   return res.status(200).json({
     success: true,
     alreadyEnrolled: enrollment.alreadyEnrolled,
