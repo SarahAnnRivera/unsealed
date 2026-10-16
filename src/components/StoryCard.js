@@ -48,11 +48,6 @@ const handleSignup = async () => {
     >
       <div className="archive-card__image">
         <img src={story.image} alt={story.imageAlt} />
-
-        <div className={`archive-mark ${story.markClass}`}>
-          <span>{story.markTop}</span>
-          <strong>{story.markBottom}</strong>
-        </div>
       </div>
       <div className="archive-card__content">
   <div className="archive-card__meta">

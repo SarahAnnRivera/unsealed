@@ -1,9 +1,28 @@
 import "./App.css";
-
+import { useEffect } from "react";
 import { stories } from "./data/stories";
 import StoryCard from "./components/StoryCard";
+import Uncovered from "./components/Uncovered";
 
 function App() {
+
+  useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const storyId = params.get("story");
+
+  if (!storyId || !["charles", "denise"].includes(storyId)) return;
+
+  const target = document.getElementById(`story-${storyId}`);
+
+  if (target) {
+    requestAnimationFrame(() => {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }
+}, []);
   
 
   return (
@@ -51,9 +70,15 @@ function App() {
         </div>
 
         
+
 {stories.map((story) => (
-  <StoryCard key={story.id} story={story} />
+  <div key={story.id} id={`story-${story.id}`}>
+    <StoryCard story={story} />
+  </div>
 ))}
+
+<Uncovered />
+
 
       </section>
       <section className="experience">

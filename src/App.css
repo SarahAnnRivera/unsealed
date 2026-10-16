@@ -516,3 +516,170 @@ button {
     transform: translateY(0);
   }
 }
+
+
+/* ---------------- DESKTOP REFINEMENT ---------------- */
+/* Mobile layout remains unchanged */
+
+@media (min-width: 801px) {
+  .hero {
+    min-height: 78vh;
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .hero h1 {
+    font-size: clamp(5rem, 9vw, 8rem);
+  }
+
+  .collection {
+    padding-top: 85px;
+    padding-bottom: 85px;
+  }
+
+  .collection__header {
+    margin-bottom: 60px;
+  }
+
+  .collection__header h2,
+  .experience__header h2 {
+    font-size: clamp(3rem, 4.5vw, 4.5rem);
+  }
+
+  .archive-card {
+    min-height: 520px;
+    margin-bottom: 65px;
+  }
+
+  .archive-card__image {
+    min-height: 520px;
+  }
+
+  .archive-card__content {
+    padding: 40px 45px;
+  }
+
+  .archive-card__meta {
+    margin-bottom: 25px;
+  }
+
+  .archive-card__content h3 {
+    font-size: clamp(3.2rem, 4.5vw, 5rem);
+  }
+
+  .archive-card__excerpt {
+    margin-top: 24px;
+    font-size: clamp(1.25rem, 1.6vw, 1.55rem);
+  }
+
+  .archive-card__synopsis {
+    margin-top: 22px;
+  }
+
+  .archive-card__details {
+    margin-top: 22px;
+  }
+
+  .archive-card__actions {
+    margin-top: 28px;
+  }
+
+  .archive-card button {
+    margin-top: 28px;
+  }
+
+  .archive-card__actions button {
+    margin-top: 0;
+  }
+
+  .experience {
+    padding-top: 85px;
+    padding-bottom: 85px;
+  }
+
+  .experience__header {
+    margin-bottom: 55px;
+  }
+}
+
+
+/* FINAL DESKTOP PROPORTIONS */
+@media (min-width: 801px) {
+  .hero {
+    min-height: 65vh;
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  .hero h1 {
+    font-size: clamp(4.5rem, 7.5vw, 7rem);
+  }
+
+  .hero__tagline {
+    margin-top: 18px;
+    font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+  }
+
+  .hero__description {
+    margin-top: 20px;
+  }
+
+  .hero__button {
+    margin-top: 28px;
+  }
+
+  .archive-card {
+    min-height: 0;
+    margin-bottom: 45px;
+  }
+
+  .archive-card__image {
+    min-height: 0;
+    height: 480px;
+  }
+
+  .archive-card__content {
+    padding: 28px 35px;
+  }
+
+  .archive-card__meta {
+    margin-bottom: 18px;
+  }
+
+  .archive-card__content h3 {
+    font-size: clamp(2.8rem, 4vw, 4.4rem);
+  }
+
+  .archive-card__excerpt {
+    margin-top: 18px;
+  }
+
+  .archive-card__synopsis,
+  .archive-card__details {
+    margin-top: 16px;
+  }
+
+  .archive-card__actions {
+    margin-top: 20px;
+  }
+
+  .experience__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .experience__step {
+    min-height: 250px;
+    padding: 30px;
+    border-right: 1px solid #343434;
+    border-bottom: none;
+  }
+
+  .experience__step:last-child {
+    border-right: none;
+  }
+
+  .experience__step > span {
+    margin-bottom: 35px;
+  }
+}
+

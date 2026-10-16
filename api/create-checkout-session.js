@@ -64,7 +64,9 @@ module.exports = async function handler(req, res) {
         plan,
       },
 
-      success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      
+success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}&story=${encodeURIComponent(storyId)}`,
+
       cancel_url: `${origin}/checkout/cancel`,
     });
 
