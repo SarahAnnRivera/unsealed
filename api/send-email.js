@@ -65,26 +65,28 @@ async function handleFreeSignup(req, res) {
     plan: "follow",
   });
 
- if (!enrollment.alreadyEnrolled) {
-  const response = await fetch(
-    `${process.env.APP_URL}/api/send-email`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CRON_SECRET}`,
-      },
-      body: JSON.stringify({
-        enrollmentId: enrollment.enrollmentId,
-        storyId,
-      }),
-    }
-  );
+  if (!enrollment.alreadyEnrolled) {
+    const response = await fetch(
+      `${process.env.APP_URL}/api/send-email`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.CRON_SECRET}`,
+        },
+        body: JSON.stringify({
+          enrollmentId: enrollment.enrollmentId,
+          storyId,
+        }),
+      }
+    );
 
-  if (!response.ok) {
-    throw new Error(`Initial Violet letter delivery failed: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(
+        `Initial Violet letter delivery failed: ${response.status}`
+      );
+    }
   }
-} 
 
   return res.status(200).json({
     success: true,
@@ -96,57 +98,10 @@ async function handleFreeSignup(req, res) {
 }
 
 // --------------------------------------------------
-// SCHEDULED EMAIL DELIVERY
+// INDIVIDUAL EMAIL DELIVERY
 // --------------------------------------------------
 
-async function handleScheduledDelivery(req, res) {
-  const expectedSecret = process.env.CRON_SECRET;
-
-  if (
-    !expectedSecret ||
-    req.headers.authorization !== `Bearer ${expectedSecret}`
-  ) {
-    return res.status(401).json({
-      error: "Unauthorized",
-    });
-  }
-
-  const now = new Date().toISOString();
-  const enrollmentId = req.body?.enrollmentId;
-  const storyId = req.body?.storyId;
-
- // Find the purchased enrollment, or the next scheduled delivery.
-let query = supabase
-  .from("enrollments")
-  .select("id, subscriber_id, story_id, next_entry_number, next_send_at")
-  .eq("status", "active")
-  .eq("access_type", "follow")
-  .lte("next_send_at", now);
-
-if (enrollmentId && storyId) {
-  // Immediate delivery: target this exact story enrollment.
-  query = query
-    .eq("id", enrollmentId)
-    .eq("story_id", storyId)
-    .eq("next_entry_number", 1);
-} else {
-  // Scheduled delivery: find the next reader due.
-  query = query.order("next_send_at", { ascending: true });
-}
-
-const { data: enrollment, error: enrollmentError } =
-  await query.limit(1).maybeSingle();
-
-  if (enrollmentError) {
-    throw enrollmentError;
-  }
-
-  if (!enrollment) {
-    return res.status(200).json({
-      message: "No letters due",
-    });
-  }
-
+async function deliverEnrollment(enrollment) {
   const { data: subscriber, error: subscriberError } =
     await supabase
       .from("subscribers")
@@ -184,10 +139,11 @@ const { data: enrollment, error: enrollmentError } =
       throw finishError;
     }
 
-    return res.status(200).json({
+    return {
+      success: true,
       message: "Story completed",
       storyId: enrollment.story_id,
-    });
+    };
   }
 
   const template = templates[enrollment.story_id];
@@ -237,44 +193,171 @@ const { data: enrollment, error: enrollmentError } =
     throw deliveryError;
   }
 
- // Get the next letter's delivery delay from Supabase.
-const { data: nextLetter, error: nextLetterError } = await supabase
-  .from("letters")
-  .select("delay_days")
-  .eq("story_id", enrollment.story_id)
-  .eq("entry_number", enrollment.next_entry_number + 1)
-  .maybeSingle();
+  // Get the next letter's delivery delay from Supabase.
+  const { data: nextLetter, error: nextLetterError } =
+    await supabase
+      .from("letters")
+      .select("delay_days")
+      .eq("story_id", enrollment.story_id)
+      .eq(
+        "entry_number",
+        enrollment.next_entry_number + 1
+      )
+      .maybeSingle();
 
-if (nextLetterError) {
-  throw nextLetterError;
-}
+  if (nextLetterError) {
+    throw nextLetterError;
+  }
 
-const nextSend = nextLetter ? new Date() : null;
+  const nextSend = nextLetter ? new Date() : null;
 
-if (nextLetter) {
-  nextSend.setDate(
-    nextSend.getDate() + (nextLetter.delay_days ?? 0)
-  );
-}
+  if (nextLetter) {
+    nextSend.setDate(
+      nextSend.getDate() + (nextLetter.delay_days ?? 0)
+    );
+  }
 
   const { error: updateError } = await supabase
     .from("enrollments")
     .update({
-      next_entry_number: enrollment.next_entry_number + 1,
-      next_send_at: nextSend ? nextSend.toISOString() : null,
+      next_entry_number:
+        enrollment.next_entry_number + 1,
+      next_send_at: nextSend
+        ? nextSend.toISOString()
+        : null,
     })
     .eq("id", enrollment.id)
-    .eq("next_entry_number", enrollment.next_entry_number);
+    .eq(
+      "next_entry_number",
+      enrollment.next_entry_number
+    );
 
   if (updateError) {
     throw updateError;
   }
 
-  return res.status(200).json({
+  return {
     success: true,
     storyId: enrollment.story_id,
     entryNumber: enrollment.next_entry_number,
     resendId: emailResult.id,
+  };
+}
+
+// --------------------------------------------------
+// SCHEDULED EMAIL DELIVERY
+// --------------------------------------------------
+
+async function handleScheduledDelivery(req, res) {
+  const expectedSecret = process.env.CRON_SECRET;
+
+  if (
+    !expectedSecret ||
+    req.headers.authorization !==
+      `Bearer ${expectedSecret}`
+  ) {
+    return res.status(401).json({
+      error: "Unauthorized",
+    });
+  }
+
+  const now = new Date().toISOString();
+  const enrollmentId = req.body?.enrollmentId;
+  const storyId = req.body?.storyId;
+
+  const immediate =
+    req.method === "POST" &&
+    enrollmentId &&
+    storyId;
+
+  let query = supabase
+    .from("enrollments")
+    .select(
+      "id, subscriber_id, story_id, next_entry_number, next_send_at"
+    )
+    .eq("status", "active")
+    .eq("access_type", "follow")
+    .lte("next_send_at", now);
+
+  if (immediate) {
+    // Preserve first-letter-only immediate delivery.
+    query = query
+      .eq("id", enrollmentId)
+      .eq("story_id", storyId)
+      .eq("next_entry_number", 1);
+
+    const {
+      data: enrollment,
+      error,
+    } = await query.maybeSingle();
+
+    if (error) {
+      throw error;
+    }
+
+    if (!enrollment) {
+      return res.status(200).json({
+        message: "No letters due",
+      });
+    }
+
+    const result = await deliverEnrollment(enrollment);
+
+    return res.status(200).json(result);
+  }
+
+  // Daily cron: process up to 25 readers per run.
+  const {
+    data: enrollments,
+    error,
+  } = await query
+    .order("next_send_at", { ascending: true })
+    .limit(25);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!enrollments?.length) {
+    return res.status(200).json({
+      message: "No letters due",
+      processed: 0,
+    });
+  }
+
+  const results = [];
+
+  for (const enrollment of enrollments) {
+    try {
+      const result = await deliverEnrollment(enrollment);
+
+      results.push({
+        enrollmentId: enrollment.id,
+        ...result,
+      });
+    } catch (err) {
+      console.error(
+        "UNSEALED scheduled delivery failed:",
+        enrollment.id,
+        err
+      );
+
+      results.push({
+        enrollmentId: enrollment.id,
+        success: false,
+        error: "Delivery failed",
+      });
+    }
+  }
+
+  const failed = results.filter(
+    (result) => result.success === false
+  );
+
+  return res.status(failed.length ? 207 : 200).json({
+    processed: results.length,
+    failed: failed.length,
+    results,
   });
 }
 
@@ -291,14 +374,20 @@ module.exports = async function handler(req, res) {
 
   try {
     // Protected scheduler requests use this header.
-    if (req.method === "GET" || req.headers.authorization) {
+    if (
+      req.method === "GET" ||
+      req.headers.authorization
+    ) {
       return await handleScheduledDelivery(req, res);
     }
 
     // Public requests can ONLY enroll in free stories.
     return await handleFreeSignup(req, res);
   } catch (error) {
-    console.error("UNSEALED email API error:", error);
+    console.error(
+      "UNSEALED email API error:",
+      error
+    );
 
     return res.status(500).json({
       error: "Something went wrong",
