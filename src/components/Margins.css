@@ -1,0 +1,93 @@
+
+/* THE MARGINS */
+
+.margins {
+  background: #191514;
+  color: #eee8dd;
+  padding: 65px 6%;
+  text-align: center;
+  border-top: 1px solid #44352f;
+  border-bottom: 1px solid #44352f;
+}
+
+.margins__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.margins__eyebrow {
+  color: #bca38c;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  margin-bottom: 12px;
+}
+
+.margins h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.margins__tagline {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #d4c1ad;
+  margin-bottom: 20px;
+}
+
+.margins__description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #c8beb3;
+  margin: 0 auto 28px;
+  max-width: 540px;
+}
+
+.margins__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.margins__actions a {
+  display: inline-block;
+  padding: 13px 22px;
+  border: 1px solid #a88b73;
+  color: #eee8dd;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.margins__actions a:hover {
+  background: #eee8dd;
+  color: #191514;
+}
+
+.margins__note {
+  margin-top: 25px;
+  color: #a99b8e;
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .margins {
+    padding: 45px 20px;
+  }
+
+  .margins__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .margins__actions a {
+    width: 100%;
+    max-width: 280px;
+    box-sizing: border-box;
+  }
+}

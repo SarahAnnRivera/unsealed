@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { stories } from "./data/stories";
 import StoryCard from "./components/StoryCard";
 import Uncovered from "./components/Uncovered";
+import Margins from "./components/Margins";
 
 function App() {
 
@@ -78,6 +79,8 @@ function App() {
 ))}
 
 <Uncovered />
+
+<Margins />
 
 
       </section>
