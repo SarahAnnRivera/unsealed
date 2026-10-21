@@ -6,9 +6,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const prices = {
   follow: process.env.STRIPE_PRICE_FOLLOW,
   binge: process.env.STRIPE_PRICE_BINGE,
+  bingefree: process.env.STRIPE_PRICE_BINGEFREE,
 };
 
-const allowedStories = ["charles", "denise"];
+const allowedStories = ["charles", "denise", "violet"];
+const freeBingeStories = ["violet"];
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -25,7 +27,9 @@ module.exports = async function handler(req, res) {
       typeof email !== "string" ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
       !allowedStories.includes(storyId) ||
-      !["follow", "binge"].includes(plan)
+      !["follow", "binge", "bingefree"].includes(plan) ||
+(plan === "bingefree" && !freeBingeStories.includes(storyId)) ||
+(freeBingeStories.includes(storyId) && plan !== "bingefree")
     ) {
       return res.status(400).json({
         error: "Invalid email, story, or plan",
@@ -60,9 +64,9 @@ module.exports = async function handler(req, res) {
       ],
 
       metadata: {
-        story_id: storyId,
-        plan,
-      },
+  story_id: storyId,
+  plan: plan === "bingefree" ? "binge" : plan,
+},
 
       
 success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}&story=${encodeURIComponent(storyId)}`,

@@ -91,7 +91,7 @@ module.exports = async function handler(req, res) {
       // Validate the story and plan before creating an enrollment.
       if (
         !email ||
-        !["charles", "denise"].includes(storyId) ||
+        !["charles", "denise", "violet"].includes(storyId) ||
         !["follow", "binge"].includes(plan)
       ) {
         throw new Error("Missing or invalid checkout information");
