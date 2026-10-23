@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./Uncovered.css";
 
 const upcomingStories = [
@@ -22,6 +22,7 @@ const upcomingStories = [
     title: "The Boy in the Tomb",
     teaser: "An unlikely burial. A forgotten boy. A mystery beneath the sand.",
     image: "/egypt.png",
+    releaseDate: "OCTOBER 23",
   },
 ];
 
@@ -39,7 +40,17 @@ export default function Uncovered() {
       <div className="uncovered__grid">
         {upcomingStories.map((story) => (
           <article className="uncovered__card" key={story.id}>
-            <img src={story.image} alt="" />
+            <div className="uncovered__image">
+              <img src={story.image} alt="" />
+
+              {story.releaseDate && (
+                <div className="uncovered__overlay">
+                  <span>ARCHIVE COMPILED</span>
+                  <strong>RELEASE DATE · {story.releaseDate}</strong>
+                </div>
+              )}
+            </div>
+
             <div className="uncovered__info">
               <span>{story.era}</span>
               <h3>{story.title}</h3>
