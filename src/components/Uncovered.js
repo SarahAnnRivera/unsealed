@@ -22,7 +22,7 @@ const upcomingStories = [
     title: "The Boy in the Tomb",
     teaser: "An unlikely burial. A forgotten boy. A mystery beneath the sand.",
     image: "/egypt.png",
-    releaseDate: "OCTOBER 23",
+    releaseDate: "OCTOBER 25",
   },
 ];
 
