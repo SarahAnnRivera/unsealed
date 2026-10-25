@@ -1,0 +1,87 @@
+
+/* UNSEALED — ABOUT PAGE */
+
+.about-page {
+  min-height: 100vh;
+  padding: 110px 24px 100px;
+  background: #f6f2ea;
+  color: #292722;
+  text-align: center;
+}
+
+.about-page__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.about-page__eyebrow {
+  display: block;
+  margin-bottom: 24px;
+  font-family: Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8b7964;
+}
+
+.about-page h1 {
+  margin: 0 0 48px;
+  font-family: Georgia, serif;
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: normal;
+  letter-spacing: 4px;
+  line-height: 1.15;
+}
+
+.about-page h2 {
+  margin: 64px 0 28px;
+  font-family: Georgia, serif;
+  font-size: clamp(23px, 3.5vw, 32px);
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.about-page p {
+  max-width: 620px;
+  margin: 0 auto 24px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.about-page__emphasis {
+  margin-top: 38px !important;
+  margin-bottom: 38px !important;
+  font-style: italic;
+  color: #75634e;
+}
+
+.about-page__closing {
+  margin-top: 72px !important;
+  padding-top: 36px;
+  border-top: 1px solid #c8bba7;
+  font-size: clamp(21px, 3vw, 27px) !important;
+  line-height: 1.7 !important;
+  font-style: italic;
+  color: #66533e;
+}
+
+@media (max-width: 600px) {
+  .about-page {
+    padding: 85px 22px 75px;
+  }
+
+  .about-page h1 {
+    margin-bottom: 36px;
+    letter-spacing: 2px;
+  }
+
+  .about-page h2 {
+    margin-top: 48px;
+  }
+
+  .about-page p {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+}

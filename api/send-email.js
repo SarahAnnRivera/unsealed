@@ -5,6 +5,7 @@ const supabase = require("../lib/supabase");
 const violetTemplate = require("./email-templates/violet");
 const charlesTemplate = require("./email-templates/charles");
 const deniseTemplate = require("./email-templates/denise");
+const laurenceTemplate = require("./email-templates/laurence");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,6 +13,7 @@ const templates = {
   violet: violetTemplate,
   charles: charlesTemplate,
   denise: deniseTemplate,
+  laurence: laurenceTemplate,
 };
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL;

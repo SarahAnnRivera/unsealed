@@ -4,6 +4,10 @@ import { stories } from "./data/stories";
 import StoryCard from "./components/StoryCard";
 import Uncovered from "./components/Uncovered";
 import Margins from "./components/Margins";
+import { Routes, Route } from "react-router-dom";
+import About from "./pages/About";
+import FAQ from "./pages/FAQ";
+import Navbar from "./components/Navbar";
 
 function App() {
 
@@ -42,17 +46,6 @@ function App() {
             Discover private letters, diaries, and forgotten records from lives
             lived inside real history.
           </p>
-
-          <button
-  className="hero__button"
-  onClick={() =>
-    document.getElementById("archives")?.scrollIntoView({
-      behavior: "smooth",
-    })
-  }
->
-  Explore the Archives
-</button>
         </div>
       </section>
       <section id="archives" className="collection">
@@ -80,11 +73,13 @@ function App() {
 
 <Uncovered />
 
-<Margins />
+<div id="margins">
+  <Margins />
+</div>
 
 
       </section>
-      <section className="experience">
+      <section id="how-it-works" className="experience">
         <div className="experience__header">
           <span>HOW IT WORKS</span>
           <h2>Some stories are meant to take time.</h2>
@@ -122,4 +117,18 @@ function App() {
   );
 }
 
-export default App;
+function SiteRoutes() {
+  return (
+    <>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/faq" element={<FAQ />} />
+      </Routes>
+    </>
+  );
+}
+
+export default SiteRoutes;
