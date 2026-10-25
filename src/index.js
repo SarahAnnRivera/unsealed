@@ -4,7 +4,15 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import { analytics } from '@heycatch/sdk';
 
+analytics.init({
+  projectKey: 'hck_pk_IipkZ4YDQ_duneqAc0qGCyd2OPuBlveR',
+  install: {
+    framework: 'react',
+    agent: 'other',
+  },
+});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

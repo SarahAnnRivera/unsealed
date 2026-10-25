@@ -5,5 +5,12 @@
       "path": "/api/send-email",
       "schedule": "0 12 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:letter([a-z0-9])",
+      "destination": "/?utm_source=heycatch&utm_campaign=:letter",
+      "permanent": false
+    }
   ]
 }
