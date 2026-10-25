@@ -111,4 +111,44 @@ discovery: [
   reverse: false,
   status: "available",
 },
+
+{
+  id: "laurence",
+  archive: "ARCHIVE 004",
+  title: "Laurence",
+  location: "SAQQARA, EGYPT",
+  year: "1996",
+
+  image: "/laurenceUNSEALED.png",
+  imageAlt: "Laurence",
+  markClass: "archive-mark--laurence",
+  markTop: "Expedition",
+  markBottom: "Tape 01",
+
+  excerpt: "“For the record: in thirty years in the field, no tomb has surprised me. I expect that to continue.”",
+
+  synopsis:
+    "In 1996, an archaeological expedition at Saqqara uncovers a chamber that should not exist. Professor Laurence Bellamy is certain he can explain its secrets. But as the excavation continues, the evidence begins to tell a very different story.",
+
+  genre: "Historical Mystery / Archaeological Suspense",
+  rating: "PG-13",
+
+  entryCount: 23,
+  entryType: "Recovered Artifacts",
+
+  discovery: [
+    "An old cassette recorder arrives in a box of equipment from a long-forgotten archaeological expedition.",
+    "Tucked beneath it are handwritten field notes, inventory sheets, and twenty-three numbered records.",
+    "The recordings begin with an ordinary excavation in Egypt.",
+    "They do not remain ordinary for long."
+  ],
+
+  free: false,
+  followPrice: 2.99,
+  bingePrice: 9.99,
+
+  reverse: true,
+  status: "available",
+},
 ];
+

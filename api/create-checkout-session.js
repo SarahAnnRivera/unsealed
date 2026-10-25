@@ -9,7 +9,7 @@ const prices = {
   bingefree: process.env.STRIPE_PRICE_BINGEFREE,
 };
 
-const allowedStories = ["charles", "denise", "violet"];
+const allowedStories = ["charles", "denise", "violet", "laurence"];
 const freeBingeStories = ["violet"];
 
 module.exports = async function handler(req, res) {

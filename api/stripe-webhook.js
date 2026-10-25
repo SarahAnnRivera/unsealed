@@ -91,7 +91,7 @@ module.exports = async function handler(req, res) {
       // Validate the story and plan before creating an enrollment.
       if (
         !email ||
-        !["charles", "denise", "violet"].includes(storyId) ||
+        !["charles", "denise", "violet", "laurence"].includes(storyId) ||
         !["follow", "binge"].includes(plan)
       ) {
         throw new Error("Missing or invalid checkout information");
@@ -135,11 +135,11 @@ if (plan === "follow" && !enrollment.alreadyEnrolled) {
 
 if (plan === "binge" && !enrollment.alreadyEnrolled) {
   const pdfFiles = {
-    charles: "UNSEALED_Charles_Styled.pdf",
-    denise: "UNSEALED_Denise_Styled.pdf",
-    violet: "UNSEALED_Violet_Styled.pdf",
-  };
-
+  charles: "UNSEALED_Charles_Styled.pdf",
+  denise: "UNSEALED_Denise_Styled.pdf",
+  violet: "UNSEALED_Violet_Styled.pdf",
+  laurence: "LAURENCE_complete_manuscript.pdf",
+};
   const fileName = pdfFiles[storyId];
 
   if (!fileName) {

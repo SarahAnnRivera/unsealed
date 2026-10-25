@@ -17,13 +17,12 @@ const upcomingStories = [
     image: "/pirate.png",
   },
   {
-    id: "egypt",
-    era: "ANCIENT EGYPT",
-    title: "The Boy in the Tomb",
-    teaser: "An unlikely burial. A forgotten boy. A mystery beneath the sand.",
-    image: "/egypt.png",
-    releaseDate: "OCTOBER 25",
-  },
+  id: "gangster",
+  era: "PROHIBITION ERA · 1920s",
+  title: "The Gentleman",
+  teaser: "A criminal record. A considerable fortune. And one ambition money cannot buy.",
+  image: "/archive005UNSEALED.png",
+},
 ];
 
 export default function Uncovered() {
