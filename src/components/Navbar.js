@@ -49,9 +49,9 @@ function Navbar() {
           <Link to="/#uncovered">Upcoming</Link>
           <Link to="/#margins">The Margins</Link>
           <Link to="/#how-it-works">How It Works</Link>
-          
           <Link to="/about">About</Link>
           <Link to="/faq">FAQ</Link>
+          {/* <Link to="/blog">Blog</Link> */}
         </div>
       </nav>
     </header>
