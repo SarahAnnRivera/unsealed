@@ -51,7 +51,7 @@ function Navbar() {
           <Link to="/#how-it-works">How It Works</Link>
           <Link to="/about">About</Link>
           <Link to="/faq">FAQ</Link>
-          {/* <Link to="/blog">Blog</Link> */}
+          <Link to="/blog">Blog</Link>
         </div>
       </nav>
     </header>
