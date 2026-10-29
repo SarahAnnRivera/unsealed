@@ -23,11 +23,13 @@ const questions = [
     answer:
       "Each archive has its own delivery schedule. New installments are sent automatically, so you don't need to return to the website to check for updates.",
   },
-  {
-    question: "Is following an archive free?",
-    answer:
-      "Some archives are free to follow, while others have a one-time Follow price. Violet is currently free to follow. Charles and Denise have a one-time Follow price of $2.99 each. The price is shown before you choose.",
-  },
+  
+{
+  question: "Why do some archives cost money?",
+  answer:
+    "We want new readers to be able to discover UNSEALED without a paywall, which is why selected shorter archives are complimentary to follow. Our longer collections are available for a one-time price that supports the writing, research, and production of original stories. There are no subscriptions or individual chapter fees.",
+},
+
   {
     question: "Will I have to buy coins or pay to unlock later chapters?",
     answer:

@@ -63,6 +63,10 @@ function App() {
             Each archive contains a fictional story told through the documents
             its characters left behind.
           </p>
+           <p>
+           No coins. No subscriptions. Just stories worth opening.
+          </p>
+
         </div>
 
         
@@ -88,31 +92,36 @@ function App() {
         </div>
 
         <div className="experience__steps">
-          <div className="experience__step">
-            <span>01</span>
-            <h3>Choose an archive.</h3>
-            <p>
-              Discover a life through the letters, diaries, and records they
-              left behind.
-            </p>
-          </div>
+        
+<div className="experience__step">
+  <span>01</span>
+  <h3>Choose an archive.</h3>
+  <p>
+    Discover stories told through letters, diaries, and forgotten records.
+    Each archive shows its reading options and prices upfront.
+  </p>
+</div>
 
-          <div className="experience__step">
-            <span>02</span>
-            <h3>Let it unfold.</h3>
-            <p>
-              Follow the archive as new documents arrive over time. Some
-              correspondence arrives when you least expect it.
-            </p>
-          </div>
+<div className="experience__step">
+  <span>02</span>
+  <h3>Let it unfold.</h3>
+  <p>
+    Choose Follow to receive new documents by email over time.
+    Selected shorter archives are free to follow; others have
+    a one-time price. No subscriptions, no coins.
+  </p>
+</div>
 
-          <div className="experience__step">
-            <span>03</span>
-            <h3>Or don't wait.</h3>
-            <p>
-              Unlock a complete archive and discover the entire story right now.
-            </p>
-          </div>
+<div className="experience__step">
+  <span>03</span>
+  <h3>Or don't wait.</h3>
+  <p>
+    Prefer the whole story at once? Choose Unseal Everything
+    to receive the complete archive immediately for the
+    listed one-time price.
+  </p>
+</div>
+
         </div>
       </section>
     </main>
