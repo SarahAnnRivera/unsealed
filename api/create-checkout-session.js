@@ -71,7 +71,7 @@ module.exports = async function handler(req, res) {
       
 success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}&story=${encodeURIComponent(storyId)}`,
 
-      cancel_url: `${origin}/checkout/cancel`,
+       cancel_url: `${origin}/`,
     });
 
     return res.status(200).json({
