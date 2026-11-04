@@ -260,6 +260,23 @@ button {
   color: #0b0b0b;
 }
 
+.archive-card__sample {
+  margin: 18px 0;
+}
+
+.archive-card__sample a {
+  color: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  transition: opacity 0.2s ease;
+}
+
+.archive-card__sample a:hover {
+  opacity: 0.65;
+}
+
 /* ---------------- MOBILE ---------------- */
 
 @media (max-width: 800px) {

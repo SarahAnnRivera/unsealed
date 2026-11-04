@@ -4,6 +4,13 @@ import FreeFollow from "./FreeFollow";
 
 function StoryCard({ story }) {
 
+  
+const sampleFiles = {
+  violet: "/UNSEALED_Violet_StyledLetter1.pdf",
+  charles: "/UNSEALED_Charles_StyledPage10.pdf",
+  denise: "/UNSEALED_Denise_StyledPage5-6.pdf",
+};
+
 
 
   return (
@@ -38,6 +45,21 @@ function StoryCard({ story }) {
   <span>{story.rating}</span>
   <span>{story.entryCount} {story.entryType}</span>
 </div>
+
+
+{sampleFiles[story.id] && (
+  <div className="archive-card__sample">
+    <a
+      href={sampleFiles[story.id]}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {story.id === "violet"
+        ? "See the First Letter"
+        : "Read an Excerpt"}
+    </a>
+  </div>
+)}
 
 
 {story.free ? (

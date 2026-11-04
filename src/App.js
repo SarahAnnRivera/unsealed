@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
 
+
 function App() {
 
   useEffect(() => {
