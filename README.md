@@ -8,7 +8,7 @@ The project combines a responsive frontend with payment processing, customer enr
 
 ## Live Application
 
-[Explore UNSEALED](https://unsealed-stories.com)
+[Explore UNSEALED](https://readunsealed.com)
 
 ## Tech Stack
 
