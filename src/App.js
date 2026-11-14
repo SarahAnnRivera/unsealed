@@ -10,6 +10,7 @@ import FAQ from "./pages/FAQ";
 import Navbar from "./components/Navbar";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -141,6 +142,7 @@ function SiteRoutes() {
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
+      <Footer />
     </>
   );
 }
