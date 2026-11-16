@@ -56,6 +56,62 @@ The project demonstrates practical experience translating a product concept into
 
 [GitHub](https://github.com/SarahAnnRivera) | [Portfolio](https://portfolio-resume-one-psi.vercel.app/)app/docs/deployment)
 
+
+## Prerequisites & Installation
+
+### Prerequisites
+
+The project was developed locally using:
+
+- Node.js v24.19.0
+- npm v11.17.0
+- Git
+
+Other Node.js versions have not been verified.
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/SarahAnnRivera/unsealed.git
+   ```
+
+2. Navigate into the project directory:
+
+   ```bash
+   cd unsealed
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Configure the required environment variables for
+   Supabase, Stripe, and other integrations.
+
+5. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+6. Open the local address displayed in your terminal,
+   typically:
+
+   http://localhost:3000
+
+### Configuration Notes
+
+Some features require external service credentials
+and cannot function without the appropriate configuration.
+
+Do not commit API keys, private credentials, or `.env`
+files containing secrets to GitHub.
+
+
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
