@@ -89,8 +89,21 @@ Other Node.js versions have not been verified.
    npm install
    ```
 
-4. Configure the required environment variables for
-   Supabase, Stripe, and other integrations.
+
+4. Create a local environment configuration:
+
+   Copy `.env.example` to `.env` and provide the
+   required values for your own development environment.
+
+   The application uses:
+   - Supabase for database operations
+   - Stripe for payments and webhooks
+   - Resend for transactional emails
+   - A cron secret for scheduled operations
+
+   Some integrations require additional configuration
+   in their respective service dashboards.
+
 
 5. Start the development server:
 
